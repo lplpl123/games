@@ -29,13 +29,13 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and character_rect.y > 0: # todo 但是这里做的还不够好，因为人物距离屏幕边缘可能有一点距离
                 character_rect.y -= 10
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and character_rect.y < 130: # 屏幕高减人物高
                 character_rect.y += 10
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT and character_rect.x > 0:
                 character_rect.x -= 10
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and character_rect.x < 220:
                 character_rect.x += 10
     # 控制为30fps
     clock.tick(30)
