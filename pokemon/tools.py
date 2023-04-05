@@ -1,10 +1,49 @@
 import pygame
+import sys
+from source.components.player import Player
+from states.world01 import World01
 
 
-# Õâ¸öº¯ÊıµÄ×÷ÓÃÊÇ°ÑÍ¼Æ¬ºÍ°×°åÕ³ÔÚÒ»´¦
+class Game:
+    def __init__(self):
+        # todo è¦æŠŠå“ªäº›æ˜¯éœ€è¦åŠ è½½çš„ï¼Œç»Ÿä¸€å…ˆåŠ è½½åœ¨ä¸€ä¸ªlistæ•°æ®åº“é‡Œé¢
+        self.world01 = World01()
+        self.player = Player()
+        # æ§åˆ¶fps
+        self.clock = pygame.time.Clock()
+
+        pygame.init()
+        self.screen = pygame.display.set_mode((240, 160))
+        pygame.display.set_caption('pokemon')
+
+        self.game_window = self.screen.get_rect()
+        self.game_map_all = pygame.Surface((self.world01.map_rect.width, self.world01.map_rect.height))
+
+    def run(self):
+        # run
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT:
+                        second = self.game_window.x + self.game_window.width / 2
+                        if self.player.character_rect.centerx > second:
+                            self.game_window.x += 10
+                    self.player.update(event.key)
+            # æ§åˆ¶ä¸º30fps
+            self.clock.tick(30)
+            # ç»˜åˆ¶èƒŒæ™¯å›¾ç‰‡
+            self.game_map_all.blit(self.world01.map, self.game_window, self.game_window)  # todo
+            self.player.draw_on_map(self.game_map_all)
+            self.screen.blit(self.game_map_all, (0, 0), self.game_window)
+            pygame.display.flip()
+
+# è¿™ä¸ªå‡½æ•°çš„ä½œç”¨æ˜¯æŠŠå›¾ç‰‡å’Œç™½æ¿ç²˜åœ¨ä¸€å¤„
 def get_image(load_image):
-    image = pygame.Surface((20, 25))  # ÓÃÀ´»­ÈËÎïµÄ»­°å
-    # ÔÚ»­°å»æÖÆÈËÎï
+    image = pygame.Surface((20, 25))  # ç”¨æ¥ç”»äººç‰©çš„ç”»æ¿
+    # åœ¨ç”»æ¿ç»˜åˆ¶äººç‰©
     image.blit(load_image, (0, 0), (5, 5, 20, 25))
     image.set_colorkey((0, 80, 159))
     return image

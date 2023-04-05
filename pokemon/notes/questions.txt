@@ -8,3 +8,6 @@
 
 5. 这个人物的背景图怎么画成无色的？
     要用ps了
+
+6. pygame.display.update()和pygame.display.flip()的区别?
+    update好像只能在画面上更新的
