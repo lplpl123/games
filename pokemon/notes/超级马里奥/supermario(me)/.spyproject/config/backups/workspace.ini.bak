@@ -1,0 +1,12 @@
+[workspace]
+restore_data_on_startup = True
+save_data_on_exit = True
+save_history = True
+save_non_project_files = False
+project_type = 'empty-project-type'
+recent_files = ['source\\components\\box.py', 'source\\components\\brick.py', 'source\\components\\coin.py', 'source\\components\\enemy.py', 'source\\components\\player.py', 'source\\components\\powerup', 'source\\components\\stuff.py', 'source\\components\\info.py', 'source\\states\\main_menu.py', 'source\\states\\load_screen.py', 'source\\states\\level.py', 'source\\constants.py', 'source\\sound.py', 'source\\setup.py', 'source\\tools.py', 'notes', 'main.py']
+
+[main]
+version = 0.2.0
+recent_files = []
+
